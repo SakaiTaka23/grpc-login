@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+import "github.com/envoyproxy/protoc-gen-validate/validate/validate.proto";
+package proto;
+option go_package = ".;proto";
+
+// 認証をするためのサービス
+service CalcService {
+    // 新規登録
+    rpc register (RegisterRequest) returns (RegisterResponse);
+    // ログイン
+    rpc login (Empty) returns (Empty);
+    // ログアウト
+    rpc logout (Empty) returns (Empty);
+    // 退会
+    rpc delete (Empty) returns (Empty);
+}
+
+// 新規登録のためのリクエスト メール・名前・パスワードが必要
+message RegisterRequest {
+    string email = 1 [(validate.rules).string.email = true];
+    string name = 2 [(validate.rules).string = {min_len: 1, max_len: 20}];
+    string password = 3 [(validate.rules).string = {min_len: 8, max_len:16}];
+}
+
+// 登録後のリスポンス作成したレコードのidを返す
+message RegisterResponse {
+    string uid = 1;
+}
+
+message Empty {
+}
