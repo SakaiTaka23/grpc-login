@@ -16,7 +16,7 @@ import * as grpcWeb from 'grpc-web';
 import * as auth_pb from './auth_pb';
 
 
-export class CalcServiceClient {
+export class AuthServiceClient {
   client_: grpcWeb.AbstractClientBase;
   hostname_: string;
   credentials_: null | { [index: string]: string; };
@@ -61,7 +61,7 @@ export class CalcServiceClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/proto.CalcService/register',
+          '/proto.AuthService/register',
         request,
         metadata || {},
         this.methodInforegister,
@@ -69,7 +69,7 @@ export class CalcServiceClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/proto.CalcService/register',
+      '/proto.AuthService/register',
     request,
     metadata || {},
     this.methodInforegister);
@@ -101,7 +101,7 @@ export class CalcServiceClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/proto.CalcService/login',
+          '/proto.AuthService/login',
         request,
         metadata || {},
         this.methodInfologin,
@@ -109,7 +109,7 @@ export class CalcServiceClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/proto.CalcService/login',
+      '/proto.AuthService/login',
     request,
     metadata || {},
     this.methodInfologin);
@@ -141,7 +141,7 @@ export class CalcServiceClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/proto.CalcService/logout',
+          '/proto.AuthService/logout',
         request,
         metadata || {},
         this.methodInfologout,
@@ -149,7 +149,7 @@ export class CalcServiceClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/proto.CalcService/logout',
+      '/proto.AuthService/logout',
     request,
     metadata || {},
     this.methodInfologout);
@@ -181,7 +181,7 @@ export class CalcServiceClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/proto.CalcService/delete',
+          '/proto.AuthService/delete',
         request,
         metadata || {},
         this.methodInfodelete,
@@ -189,7 +189,7 @@ export class CalcServiceClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/proto.CalcService/delete',
+      '/proto.AuthService/delete',
     request,
     metadata || {},
     this.methodInfodelete);
