@@ -14,10 +14,10 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// CalcServiceClient is the client API for CalcService service.
+// AuthServiceClient is the client API for AuthService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type CalcServiceClient interface {
+type AuthServiceClient interface {
 	// 新規登録
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
 	// ログイン
@@ -28,54 +28,54 @@ type CalcServiceClient interface {
 	Delete(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Empty, error)
 }
 
-type calcServiceClient struct {
+type authServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewCalcServiceClient(cc grpc.ClientConnInterface) CalcServiceClient {
-	return &calcServiceClient{cc}
+func NewAuthServiceClient(cc grpc.ClientConnInterface) AuthServiceClient {
+	return &authServiceClient{cc}
 }
 
-func (c *calcServiceClient) Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error) {
+func (c *authServiceClient) Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error) {
 	out := new(RegisterResponse)
-	err := c.cc.Invoke(ctx, "/proto.CalcService/register", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/proto.AuthService/register", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *calcServiceClient) Login(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Empty, error) {
+func (c *authServiceClient) Login(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Empty, error) {
 	out := new(Empty)
-	err := c.cc.Invoke(ctx, "/proto.CalcService/login", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/proto.AuthService/login", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *calcServiceClient) Logout(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Empty, error) {
+func (c *authServiceClient) Logout(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Empty, error) {
 	out := new(Empty)
-	err := c.cc.Invoke(ctx, "/proto.CalcService/logout", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/proto.AuthService/logout", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *calcServiceClient) Delete(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Empty, error) {
+func (c *authServiceClient) Delete(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Empty, error) {
 	out := new(Empty)
-	err := c.cc.Invoke(ctx, "/proto.CalcService/delete", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/proto.AuthService/delete", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// CalcServiceServer is the server API for CalcService service.
-// All implementations must embed UnimplementedCalcServiceServer
+// AuthServiceServer is the server API for AuthService service.
+// All implementations must embed UnimplementedAuthServiceServer
 // for forward compatibility
-type CalcServiceServer interface {
+type AuthServiceServer interface {
 	// 新規登録
 	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
 	// ログイン
@@ -84,132 +84,132 @@ type CalcServiceServer interface {
 	Logout(context.Context, *Empty) (*Empty, error)
 	// 退会
 	Delete(context.Context, *Empty) (*Empty, error)
-	mustEmbedUnimplementedCalcServiceServer()
+	mustEmbedUnimplementedAuthServiceServer()
 }
 
-// UnimplementedCalcServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedCalcServiceServer struct {
+// UnimplementedAuthServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedAuthServiceServer struct {
 }
 
-func (UnimplementedCalcServiceServer) Register(context.Context, *RegisterRequest) (*RegisterResponse, error) {
+func (UnimplementedAuthServiceServer) Register(context.Context, *RegisterRequest) (*RegisterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Register not implemented")
 }
-func (UnimplementedCalcServiceServer) Login(context.Context, *Empty) (*Empty, error) {
+func (UnimplementedAuthServiceServer) Login(context.Context, *Empty) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
 }
-func (UnimplementedCalcServiceServer) Logout(context.Context, *Empty) (*Empty, error) {
+func (UnimplementedAuthServiceServer) Logout(context.Context, *Empty) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Logout not implemented")
 }
-func (UnimplementedCalcServiceServer) Delete(context.Context, *Empty) (*Empty, error) {
+func (UnimplementedAuthServiceServer) Delete(context.Context, *Empty) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedCalcServiceServer) mustEmbedUnimplementedCalcServiceServer() {}
+func (UnimplementedAuthServiceServer) mustEmbedUnimplementedAuthServiceServer() {}
 
-// UnsafeCalcServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to CalcServiceServer will
+// UnsafeAuthServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to AuthServiceServer will
 // result in compilation errors.
-type UnsafeCalcServiceServer interface {
-	mustEmbedUnimplementedCalcServiceServer()
+type UnsafeAuthServiceServer interface {
+	mustEmbedUnimplementedAuthServiceServer()
 }
 
-func RegisterCalcServiceServer(s grpc.ServiceRegistrar, srv CalcServiceServer) {
-	s.RegisterService(&CalcService_ServiceDesc, srv)
+func RegisterAuthServiceServer(s grpc.ServiceRegistrar, srv AuthServiceServer) {
+	s.RegisterService(&AuthService_ServiceDesc, srv)
 }
 
-func _CalcService_Register_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthService_Register_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RegisterRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CalcServiceServer).Register(ctx, in)
+		return srv.(AuthServiceServer).Register(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.CalcService/register",
+		FullMethod: "/proto.AuthService/register",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CalcServiceServer).Register(ctx, req.(*RegisterRequest))
+		return srv.(AuthServiceServer).Register(ctx, req.(*RegisterRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CalcService_Login_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthService_Login_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CalcServiceServer).Login(ctx, in)
+		return srv.(AuthServiceServer).Login(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.CalcService/login",
+		FullMethod: "/proto.AuthService/login",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CalcServiceServer).Login(ctx, req.(*Empty))
+		return srv.(AuthServiceServer).Login(ctx, req.(*Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CalcService_Logout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthService_Logout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CalcServiceServer).Logout(ctx, in)
+		return srv.(AuthServiceServer).Logout(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.CalcService/logout",
+		FullMethod: "/proto.AuthService/logout",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CalcServiceServer).Logout(ctx, req.(*Empty))
+		return srv.(AuthServiceServer).Logout(ctx, req.(*Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CalcService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AuthService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CalcServiceServer).Delete(ctx, in)
+		return srv.(AuthServiceServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.CalcService/delete",
+		FullMethod: "/proto.AuthService/delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CalcServiceServer).Delete(ctx, req.(*Empty))
+		return srv.(AuthServiceServer).Delete(ctx, req.(*Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// CalcService_ServiceDesc is the grpc.ServiceDesc for CalcService service.
+// AuthService_ServiceDesc is the grpc.ServiceDesc for AuthService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var CalcService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.CalcService",
-	HandlerType: (*CalcServiceServer)(nil),
+var AuthService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.AuthService",
+	HandlerType: (*AuthServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "register",
-			Handler:    _CalcService_Register_Handler,
+			Handler:    _AuthService_Register_Handler,
 		},
 		{
 			MethodName: "login",
-			Handler:    _CalcService_Login_Handler,
+			Handler:    _AuthService_Login_Handler,
 		},
 		{
 			MethodName: "logout",
-			Handler:    _CalcService_Logout_Handler,
+			Handler:    _AuthService_Logout_Handler,
 		},
 		{
 			MethodName: "delete",
-			Handler:    _CalcService_Delete_Handler,
+			Handler:    _AuthService_Delete_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
