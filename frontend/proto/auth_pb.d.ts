@@ -1,6 +1,7 @@
 import * as jspb from 'google-protobuf'
 
 import * as github_com_envoyproxy_protoc$gen$validate_validate_validate_pb from './github.com/envoyproxy/protoc-gen-validate/validate/validate_pb';
+import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty_pb';
 
 
 export class RegisterRequest extends jspb.Message {
@@ -44,6 +45,28 @@ export class RegisterResponse extends jspb.Message {
 export namespace RegisterResponse {
   export type AsObject = {
     uid: string,
+  }
+}
+
+export class LoginRequest extends jspb.Message {
+  getEmail(): string;
+  setEmail(value: string): LoginRequest;
+
+  getPassword(): string;
+  setPassword(value: string): LoginRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): LoginRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: LoginRequest): LoginRequest.AsObject;
+  static serializeBinaryToWriter(message: LoginRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): LoginRequest;
+  static deserializeBinaryFromReader(message: LoginRequest, reader: jspb.BinaryReader): LoginRequest;
+}
+
+export namespace LoginRequest {
+  export type AsObject = {
+    email: string,
+    password: string,
   }
 }
 

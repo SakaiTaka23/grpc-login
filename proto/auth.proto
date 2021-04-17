@@ -1,6 +1,8 @@
 syntax = "proto3";
 
 import "github.com/envoyproxy/protoc-gen-validate/validate/validate.proto";
+import "google/protobuf/empty.proto";
+
 package proto;
 option go_package = ".;proto";
 
@@ -9,7 +11,7 @@ service AuthService {
     // 新規登録
     rpc register (RegisterRequest) returns (RegisterResponse);
     // ログイン
-    rpc login (Empty) returns (Empty);
+    rpc login (LoginRequest) returns (google.protobuf.Empty);
     // ログアウト
     rpc logout (Empty) returns (Empty);
     // 退会
@@ -26,6 +28,11 @@ message RegisterRequest {
 // 登録後のリスポンス作成したレコードのidを返す
 message RegisterResponse {
     string uid = 1;
+}
+
+message LoginRequest {
+    string email = 1 [(validate.rules).string.email = true];
+    string password = 3 [(validate.rules).string = {min_len: 8, max_len:16}];
 }
 
 message Empty {

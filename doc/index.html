@@ -186,6 +186,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto.LoginRequest"><span class="badge">M</span>LoginRequest</a>
+                </li>
+              
+                <li>
                   <a href="#proto.RegisterRequest"><span class="badge">M</span>RegisterRequest</a>
                 </li>
               
@@ -227,8 +231,8 @@
             
               <tr>
                 <td>login</td>
-                <td><a href="#proto.Empty">Empty</a></td>
-                <td><a href="#proto.Empty">Empty</a></td>
+                <td><a href="#proto.LoginRequest">LoginRequest</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
                 <td><p>ログイン</p></td>
               </tr>
             
@@ -256,6 +260,75 @@
         <p></p>
 
         
+
+        
+      
+        <h3 id="proto.LoginRequest">LoginRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>email</td>
+                  <td><a href="#string">string</a></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>password</td>
+                  <td><a href="#string">string</a></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Validated Fields</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Field</td>
+                  <td>Validations</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>email</td>
+                  <td>
+                    <ul>
+                    
+                      <li>string.email: true</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>password</td>
+                  <td>
+                    <ul>
+                    
+                      <li>string.min_len: 8</li>
+                    
+                      <li>string.max_len: 16</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
+          
 
         
       
