@@ -12,6 +12,7 @@ const Register = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <TextField
         variant='outlined'
+        placeholder='email'
         {...register('email', {
           required: true,
         })}
@@ -19,6 +20,7 @@ const Register = () => {
 
       <TextField
         variant='outlined'
+        placeholder='name'
         {...register('name', {
           required: true,
           minLength: 1,
@@ -28,6 +30,7 @@ const Register = () => {
 
       <TextField
         variant='outlined'
+        placeholder='password'
         {...register('password', {
           required: true,
           minLength: 8,
