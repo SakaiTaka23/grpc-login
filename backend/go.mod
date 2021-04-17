@@ -3,6 +3,7 @@ module backend
 go 1.16
 
 require (
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/envoyproxy/protoc-gen-validate v0.5.1
 	github.com/golang/protobuf v1.5.2
 	github.com/google/uuid v1.1.2
