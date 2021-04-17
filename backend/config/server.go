@@ -2,6 +2,7 @@ package config
 
 import (
 	"backend/handler"
+	"backend/handler/auth"
 	pb "backend/proto"
 
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
@@ -21,14 +22,14 @@ func CreateServer() *grpc.Server {
 			grpc_middleware.ChainUnaryServer(
 				grpc_zap.UnaryServerInterceptor(logger, opts...),
 				grpc_validator.UnaryServerInterceptor(),
-				grpc_auth.UnaryServerInterceptor(Authenticate),
+				grpc_auth.UnaryServerInterceptor(auth.Authenticate),
 			),
 		),
 		grpc.StreamInterceptor(
 			grpc_middleware.ChainStreamServer(
 				grpc_zap.StreamServerInterceptor(logger, opts...),
 				grpc_validator.StreamServerInterceptor(),
-				grpc_auth.StreamServerInterceptor(Authenticate),
+				grpc_auth.StreamServerInterceptor(auth.Authenticate),
 			),
 		),
 	)

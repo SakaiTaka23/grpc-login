@@ -3,8 +3,10 @@ package handler
 import (
 	"backend/database"
 	"backend/domain"
+	"backend/handler/auth"
 	pb "backend/proto"
 	"context"
+	"log"
 
 	"github.com/google/uuid"
 	"golang.org/x/crypto/bcrypt"
@@ -31,4 +33,19 @@ func (s *AuthServiceServer) Register(ctx context.Context, r *pb.RegisterRequest)
 	uid = database.CreateUser(&user)
 
 	return &pb.RegisterResponse{Uid: uid}, nil
+}
+
+func (s *AuthServiceServer) AuthFuncOverride(ctx context.Context, fullMethodName string) (context.Context, error) {
+	log.Println("client is calling method:", fullMethodName)
+	skipAuth := []string{"/proto.AuthService/register"}
+	if auth.Contains(skipAuth, fullMethodName) {
+		return ctx, nil
+	}
+
+	ctx, err := auth.Authenticate(ctx)
+	if err != nil {
+		return ctx, err
+	}
+
+	return ctx, nil
 }
