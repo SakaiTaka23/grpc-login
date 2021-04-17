@@ -5,6 +5,7 @@ import { register } from '../types/registerType';
 const useRegister = () => {
   const onSubmit = (data: register) => {
     console.log(data);
+    sendInfo(data);
   };
 
   const sendInfo = async ({ email, name, password }: register) => {

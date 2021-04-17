@@ -5,6 +5,7 @@ import { login } from '../types/loginType';
 const useLogin = () => {
   const onSubmit = (data: login) => {
     console.log(data);
+    fetchToken(data);
   };
 
   const fetchToken = async ({ email, password }: login) => {
@@ -12,11 +13,10 @@ const useLogin = () => {
     const request = new LoginRequest();
     request.setEmail(email);
     request.setPassword(password);
-    const response = await client.login(request, {});
+    const response = await client.login(request, {}, (err, res) => {});
     response.on('status', (status) => {
-      console.log(status.metadata.get('jwt'));
+      console.log(status.metadata.jwt);
     });
-    console.log(response);
   };
 
   return { onSubmit };
