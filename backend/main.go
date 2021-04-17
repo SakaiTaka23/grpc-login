@@ -5,6 +5,7 @@ import (
 	"net"
 
 	"backend/config"
+	"backend/database"
 )
 
 const (
@@ -12,6 +13,8 @@ const (
 )
 
 func main() {
+	database.Connect()
+
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)

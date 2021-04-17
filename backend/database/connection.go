@@ -1,6 +1,7 @@
 package database
 
 import (
+	"backend/domain"
 	"os"
 
 	"gorm.io/driver/mysql"
@@ -10,11 +11,20 @@ import (
 var DB *gorm.DB
 
 func Connect() {
-	connection, err := gorm.Open(mysql.Open(os.Getenv("DB_USERNAME")+":"+os.Getenv("DB_PASSWORD")+"@"+"tcp(127.0.0.1:3306)/"+os.Getenv("DB_DATABASE")), &gorm.Config{})
+	user := os.Getenv("DB_USERNAME")
+	pass := os.Getenv("DB_PASSWORD")
+	protocol := "tcp(db:3306)"
+	dbname := os.Getenv("DB_DATABASE")
+
+	connection, err := gorm.Open(mysql.Open(user+":"+pass+"@"+protocol+"/"+dbname), &gorm.Config{})
 
 	if err != nil {
 		panic("could not connect to the database")
 	}
 
 	DB = connection
+
+	if err := connection.AutoMigrate(&domain.User{}); err != nil {
+		panic(err)
+	}
 }
