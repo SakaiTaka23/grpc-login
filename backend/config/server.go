@@ -35,6 +35,7 @@ func CreateServer() *grpc.Server {
 	)
 
 	pb.RegisterAuthServiceServer(s, &handler.AuthServiceServer{})
+	pb.RegisterUserServiceServer(s, &handler.UserServiceServer{})
 	reflection.Register(s)
 
 	return s
