@@ -18,11 +18,11 @@ const useUser = () => {
     const client = new UserServiceClient('http://localhost:8080');
     const request = new LoginRequest();
     client.user(request, { authorization: `bearer ${token}` }, (err, res) => {
-      const info: userInfo = {
-        email: res.getEmail(),
-        name: res.getName(),
-      };
-      setUser(info);
+      console.log(err, res);
+      if (err === null) {
+        const info = res.toObject();
+        setUser(info);
+      }
     });
   };
 
