@@ -19,7 +19,7 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-const SecretKey = "thisisasecretkeyforjwt"
+const SecretKey = "secret"
 
 type AuthServiceServer struct {
 	pb.UnimplementedAuthServiceServer
