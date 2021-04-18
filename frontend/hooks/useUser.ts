@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { LoginRequest } from '../proto/auth_pb';
 import { UserServiceClient } from '../proto/UserServiceClientPb';
 import { userInfo } from '../types/userType';
+import { Empty } from 'google-protobuf/google/protobuf/empty_pb';
 
 const useUser = () => {
   const [user, setUser] = useState<userInfo>({
@@ -16,8 +17,7 @@ const useUser = () => {
 
   const fetchUser = (token: string) => {
     const client = new UserServiceClient('http://localhost:8080');
-    const request = new LoginRequest();
-    client.user(request, { authorization: `bearer ${token}` }, (err, res) => {
+    client.user(new Empty(), { authorization: `bearer ${token}` }, (err, res) => {
       console.log(err, res);
       if (err === null) {
         const info = res.toObject();
