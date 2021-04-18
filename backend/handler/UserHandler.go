@@ -3,6 +3,7 @@ package handler
 import (
 	pb "backend/proto"
 	"context"
+	"log"
 
 	"github.com/golang/protobuf/ptypes/empty"
 )
@@ -12,5 +13,6 @@ type UserServiceServer struct {
 }
 
 func (s *UserServiceServer) User(ctx context.Context, r *empty.Empty) (*pb.UserResponse, error) {
+	log.Printf("user_id : %s", ctx.Value("user_id"))
 	return &pb.UserResponse{Email: "test@test.com", Name: "test"}, nil
 }
