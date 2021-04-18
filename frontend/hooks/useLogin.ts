@@ -13,9 +13,11 @@ const useLogin = () => {
     const request = new LoginRequest();
     request.setEmail(email);
     request.setPassword(password);
-    const response = await client.login(request, {}, (err, res) => {});
+    const response = client.login(request, {}, (err, res) => {});
     response.on('status', (status) => {
       console.log(status.metadata.jwt);
+      const jwt = status.metadata.jwt;
+      localStorage.setItem('jwt', jwt);
     });
   };
 
