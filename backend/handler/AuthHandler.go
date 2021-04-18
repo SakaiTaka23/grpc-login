@@ -70,6 +70,12 @@ func (s *AuthServiceServer) Login(ctx context.Context, r *pb.LoginRequest) (*emp
 	return &empty.Empty{}, nil
 }
 
+func (s *AuthServiceServer) Delete(ctx context.Context, r *empty.Empty) (*empty.Empty, error) {
+	id := ctx.Value("user_id").(string)
+	database.DeleteUser(id)
+	return &empty.Empty{}, nil
+}
+
 func (s *AuthServiceServer) AuthFuncOverride(ctx context.Context, fullMethodName string) (context.Context, error) {
 	log.Println("client is calling method:", fullMethodName)
 	skipAuth := []string{"/proto.AuthService/register", "/proto.AuthService/login"}

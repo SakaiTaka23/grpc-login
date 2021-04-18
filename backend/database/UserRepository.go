@@ -14,3 +14,8 @@ func FindUserFromMail(mail string) *domain.User {
 	DB.Where("email = ?", mail).First(&user)
 	return &user
 }
+
+func DeleteUser(id string) {
+	var user domain.User
+	DB.Where("id = ?", id).Delete(&user)
+}
