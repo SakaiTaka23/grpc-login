@@ -39,8 +39,8 @@ build:
 tidy:
 	$(COMPOSE) run back go mod tidy
 
-protoc: protoc-back protoc-front
-	$(info Made code for backend and frontend)
+protoc: protoc-back protoc-front protoc-doc
+	$(info Made code for backend, frontend and doc)
 
 protoc-back:
 	$(info Making code from proto files for backend)
