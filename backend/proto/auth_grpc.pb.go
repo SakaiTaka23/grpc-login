@@ -24,9 +24,9 @@ type AuthServiceClient interface {
 	// ログイン
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// ログアウト
-	Logout(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Empty, error)
+	Logout(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// 退会
-	Delete(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Empty, error)
+	Delete(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type authServiceClient struct {
@@ -55,8 +55,8 @@ func (c *authServiceClient) Login(ctx context.Context, in *LoginRequest, opts ..
 	return out, nil
 }
 
-func (c *authServiceClient) Logout(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Empty, error) {
-	out := new(Empty)
+func (c *authServiceClient) Logout(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/proto.AuthService/logout", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -64,8 +64,8 @@ func (c *authServiceClient) Logout(ctx context.Context, in *Empty, opts ...grpc.
 	return out, nil
 }
 
-func (c *authServiceClient) Delete(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Empty, error) {
-	out := new(Empty)
+func (c *authServiceClient) Delete(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/proto.AuthService/delete", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -82,9 +82,9 @@ type AuthServiceServer interface {
 	// ログイン
 	Login(context.Context, *LoginRequest) (*emptypb.Empty, error)
 	// ログアウト
-	Logout(context.Context, *Empty) (*Empty, error)
+	Logout(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	// 退会
-	Delete(context.Context, *Empty) (*Empty, error)
+	Delete(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	mustEmbedUnimplementedAuthServiceServer()
 }
 
@@ -98,10 +98,10 @@ func (UnimplementedAuthServiceServer) Register(context.Context, *RegisterRequest
 func (UnimplementedAuthServiceServer) Login(context.Context, *LoginRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
 }
-func (UnimplementedAuthServiceServer) Logout(context.Context, *Empty) (*Empty, error) {
+func (UnimplementedAuthServiceServer) Logout(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Logout not implemented")
 }
-func (UnimplementedAuthServiceServer) Delete(context.Context, *Empty) (*Empty, error) {
+func (UnimplementedAuthServiceServer) Delete(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedAuthServiceServer) mustEmbedUnimplementedAuthServiceServer() {}
@@ -154,7 +154,7 @@ func _AuthService_Login_Handler(srv interface{}, ctx context.Context, dec func(i
 }
 
 func _AuthService_Logout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Empty)
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -166,13 +166,13 @@ func _AuthService_Logout_Handler(srv interface{}, ctx context.Context, dec func(
 		FullMethod: "/proto.AuthService/logout",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).Logout(ctx, req.(*Empty))
+		return srv.(AuthServiceServer).Logout(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AuthService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Empty)
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -184,7 +184,7 @@ func _AuthService_Delete_Handler(srv interface{}, ctx context.Context, dec func(
 		FullMethod: "/proto.AuthService/delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).Delete(ctx, req.(*Empty))
+		return srv.(AuthServiceServer).Delete(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -117,28 +117,28 @@ export class AuthServiceClient {
   }
 
   methodInfologout = new grpcWeb.AbstractClientBase.MethodInfo(
-    auth_pb.Empty,
-    (request: auth_pb.Empty) => {
+    google_protobuf_empty_pb.Empty,
+    (request: google_protobuf_empty_pb.Empty) => {
       return request.serializeBinary();
     },
-    auth_pb.Empty.deserializeBinary
+    google_protobuf_empty_pb.Empty.deserializeBinary
   );
 
   logout(
-    request: auth_pb.Empty,
-    metadata: grpcWeb.Metadata | null): Promise<auth_pb.Empty>;
+    request: google_protobuf_empty_pb.Empty,
+    metadata: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
 
   logout(
-    request: auth_pb.Empty,
+    request: google_protobuf_empty_pb.Empty,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.Error,
-               response: auth_pb.Empty) => void): grpcWeb.ClientReadableStream<auth_pb.Empty>;
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
 
   logout(
-    request: auth_pb.Empty,
+    request: google_protobuf_empty_pb.Empty,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.Error,
-               response: auth_pb.Empty) => void) {
+               response: google_protobuf_empty_pb.Empty) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -157,28 +157,28 @@ export class AuthServiceClient {
   }
 
   methodInfodelete = new grpcWeb.AbstractClientBase.MethodInfo(
-    auth_pb.Empty,
-    (request: auth_pb.Empty) => {
+    google_protobuf_empty_pb.Empty,
+    (request: google_protobuf_empty_pb.Empty) => {
       return request.serializeBinary();
     },
-    auth_pb.Empty.deserializeBinary
+    google_protobuf_empty_pb.Empty.deserializeBinary
   );
 
   delete(
-    request: auth_pb.Empty,
-    metadata: grpcWeb.Metadata | null): Promise<auth_pb.Empty>;
+    request: google_protobuf_empty_pb.Empty,
+    metadata: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
 
   delete(
-    request: auth_pb.Empty,
+    request: google_protobuf_empty_pb.Empty,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.Error,
-               response: auth_pb.Empty) => void): grpcWeb.ClientReadableStream<auth_pb.Empty>;
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
 
   delete(
-    request: auth_pb.Empty,
+    request: google_protobuf_empty_pb.Empty,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.Error,
-               response: auth_pb.Empty) => void) {
+               response: google_protobuf_empty_pb.Empty) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +

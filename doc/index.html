@@ -182,10 +182,6 @@
               
               
                 <li>
-                  <a href="#proto.Empty"><span class="badge">M</span>Empty</a>
-                </li>
-              
-                <li>
                   <a href="#proto.LoginRequest"><span class="badge">M</span>LoginRequest</a>
                 </li>
               
@@ -195,6 +191,25 @@
               
                 <li>
                   <a href="#proto.RegisterResponse"><span class="badge">M</span>RegisterResponse</a>
+                </li>
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#user.proto">user.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#proto.UserService"><span class="badge">S</span>UserService</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#proto.UserResponse"><span class="badge">M</span>UserResponse</a>
                 </li>
               
               
@@ -238,15 +253,15 @@
             
               <tr>
                 <td>logout</td>
-                <td><a href="#proto.Empty">Empty</a></td>
-                <td><a href="#proto.Empty">Empty</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
                 <td><p>ログアウト</p></td>
               </tr>
             
               <tr>
                 <td>delete</td>
-                <td><a href="#proto.Empty">Empty</a></td>
-                <td><a href="#proto.Empty">Empty</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
                 <td><p>退会</p></td>
               </tr>
             
@@ -255,13 +270,6 @@
 
         
 
-      
-        <h3 id="proto.Empty">Empty</h3>
-        <p></p>
-
-        
-
-        
       
         <h3 id="proto.LoginRequest">LoginRequest</h3>
         <p></p>
@@ -439,6 +447,109 @@
             </tbody>
           </table>
 
+          
+
+        
+      
+
+      
+
+      
+
+    
+      
+      <div class="file-heading">
+        <h2 id="user.proto">user.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="proto.UserService">UserService</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>user</td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><a href="#proto.UserResponse">UserResponse</a></td>
+                <td><p>ユーザー情報取得 認証必須</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+
+      
+        <h3 id="proto.UserResponse">UserResponse</h3>
+        <p>JWT</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>email</td>
+                  <td><a href="#string">string</a></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+            
+            
+            <h4>Validated Fields</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Field</td>
+                  <td>Validations</td>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr>
+                  <td>email</td>
+                  <td>
+                    <ul>
+                    
+                      <li>string.email: true</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td>
+                    <ul>
+                    
+                      <li>string.min_len: 1</li>
+                    
+                      <li>string.max_len: 20</li>
+                    
+                    </ul>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+            
           
 
         
