@@ -13,7 +13,9 @@ const useLogin = () => {
     const request = new LoginRequest();
     request.setEmail(email);
     request.setPassword(password);
-    const response = client.login(request, {}, (err, res) => {});
+    const response = client.login(request, {}, (err, res) => {
+      console.log(err);
+    });
     response.on('status', (status) => {
       console.log(status.metadata.jwt);
       const jwt = status.metadata.jwt;
