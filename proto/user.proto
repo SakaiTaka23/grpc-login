@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+import "github.com/envoyproxy/protoc-gen-validate/validate/validate.proto";
+import "google/protobuf/empty.proto";
+
+package proto;
+option go_package = ".;proto";
+
+service UserService {
+    // ユーザー情報取得 認証必須
+    rpc user (google.protobuf.Empty) returns (UserResponse);
+}
+
+// JWT
+message UserResponse {
+    string email = 1 [(validate.rules).string.email = true];
+    string name = 2 [(validate.rules).string = {min_len: 1, max_len: 20}];
+}

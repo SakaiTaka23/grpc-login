@@ -13,9 +13,9 @@ service AuthService {
     // ログイン
     rpc login (LoginRequest) returns (google.protobuf.Empty);
     // ログアウト
-    rpc logout (Empty) returns (Empty);
+    rpc logout (google.protobuf.Empty) returns (google.protobuf.Empty);
     // 退会
-    rpc delete (Empty) returns (Empty);
+    rpc delete (google.protobuf.Empty) returns (google.protobuf.Empty);
 }
 
 // 新規登録のためのリクエスト メール・名前・パスワードが必要
@@ -33,7 +33,4 @@ message RegisterResponse {
 message LoginRequest {
     string email = 1 [(validate.rules).string.email = true];
     string password = 3 [(validate.rules).string = {min_len: 8, max_len:16}];
-}
-
-message Empty {
 }
