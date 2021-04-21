@@ -34,12 +34,12 @@ func (usecase *authUsecase) Register(user *model.User) (string, error) {
 }
 
 func (usecase *authUsecase) Login(user *model.User) (string, error) {
-	user = usecase.userRepo.FindUserFromMail(user.Email)
-	if user.ID == "" {
+	userCorrect := usecase.userRepo.FindUserFromMail(user.Email)
+	if userCorrect.ID == "" {
 		return "", status.Errorf(codes.Unauthenticated, "The user does not exist")
 	}
 
-	if err := bcrypt.CompareHashAndPassword(user.Password, []byte(user.Password)); err != nil {
+	if err := bcrypt.CompareHashAndPassword(userCorrect.Password, user.Password); err != nil {
 		return "", status.Errorf(codes.Unauthenticated, "Incorrect password")
 	}
 
