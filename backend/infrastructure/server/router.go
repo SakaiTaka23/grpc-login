@@ -9,9 +9,10 @@ import (
 )
 
 func SetRouter(s *grpc.Server) *grpc.Server {
-	pb.RegisterAuthServiceServer(s, injector.InjectAuthHandler().UnimplementedAuthServiceServer)
-	// pb.RegisterUserServiceServer(s, &grpchandler.UserHandler{})
-	pb.RegisterUserServiceServer(s, injector.InjectUserHandler().UnimplementedUserServiceServer)
+	authHandler := injector.InjectAuthHandler()
+	pb.RegisterAuthServiceServer(s, &authHandler)
+	userHandler := injector.InjectUserHandler()
+	pb.RegisterUserServiceServer(s, &userHandler)
 	reflection.Register(s)
 
 	return s
