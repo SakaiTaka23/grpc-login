@@ -26,9 +26,6 @@ type AuthServiceServer struct {
 }
 
 func (s *AuthServiceServer) Register(ctx context.Context, r *pb.RegisterRequest) (*pb.RegisterResponse, error) {
-	if err := r.Validate(true); err != nil {
-		return nil, err
-	}
 
 	uid := uuid.New().String()
 	password, _ := bcrypt.GenerateFromPassword([]byte(r.GetPassword()), 14)
