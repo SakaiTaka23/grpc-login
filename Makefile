@@ -4,7 +4,7 @@ RUN = docker run
 RUN_RM = $(RUN) --rm
 
 PROTO_DIR = proto/*.proto
-PROTO_OUT_BACK = backend/proto
+PROTO_OUT_BACK = backend/handler/proto
 PROTO_OUT_FRONT = frontend/proto
 
 PROTO_CMD_BACK = protoc \
