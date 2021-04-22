@@ -28,6 +28,11 @@ func NewAuthUsecase(userRepo repository.UserRepository) AuthUsecase {
 }
 
 func (usecase *authUsecase) Register(user *model.User) (string, error) {
+	userExists := usecase.userRepo.FindUserFromMail(user.Email)
+	if userExists.ID != "" {
+		return "", status.Errorf(codes.AlreadyExists, "The email already exist")
+	}
+
 	uid := usecase.userRepo.CreateUser(user)
 	return uid, nil
 }
