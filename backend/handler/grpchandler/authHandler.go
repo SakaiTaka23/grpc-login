@@ -62,7 +62,7 @@ func (handler *AuthHandler) Login(ctx context.Context, r *pb.LoginRequest) (*emp
 		return nil, err
 	}
 
-	_ = grpc.SetTrailer(ctx, metadata.Pairs("jwt", token))
+	_ = grpc.SetHeader(ctx, metadata.Pairs("jwt", token))
 	return &empty.Empty{}, nil
 }
 

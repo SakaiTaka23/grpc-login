@@ -16,9 +16,9 @@ const useLogin = () => {
     const response = client.login(request, {}, (err, res) => {
       console.log(err);
     });
-    response.on('status', (status) => {
-      console.log(status.metadata.jwt);
-      const jwt = status.metadata.jwt;
+    response.on('metadata', (metadata) => {
+      console.log(JSON.stringify(metadata));
+      const jwt = metadata.jwt;
       localStorage.setItem('jwt', jwt);
     });
   };
