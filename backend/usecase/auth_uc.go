@@ -47,7 +47,7 @@ func (usecase *authUsecase) Login(user *model.User) (string, error) {
 		return "", status.Errorf(codes.Unauthenticated, "Incorrect password")
 	}
 
-	claims := jwt.NewWithClaims(jwt.SigningMethodES256, jwt.StandardClaims{
+	claims := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.StandardClaims{
 		Issuer:    user.ID,
 		ExpiresAt: time.Now().Add(time.Hour * 24).Unix(),
 	})
