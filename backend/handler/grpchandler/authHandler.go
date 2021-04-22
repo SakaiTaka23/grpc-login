@@ -42,7 +42,11 @@ func (handler *AuthHandler) Register(ctx context.Context, r *pb.RegisterRequest)
 		Password: password,
 	}
 
-	uid, _ = handler.authUsecase.Register(&user)
+	uid, err := handler.authUsecase.Register(&user)
+	if err != nil {
+		return nil, err
+	}
+
 	return &pb.RegisterResponse{Uid: uid}, nil
 }
 
