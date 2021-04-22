@@ -48,7 +48,7 @@ func (usecase *authUsecase) Login(user *model.User) (string, error) {
 	}
 
 	claims := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.StandardClaims{
-		Issuer:    user.ID,
+		Issuer:    userCorrect.ID,
 		ExpiresAt: time.Now().Add(time.Hour * 24).Unix(),
 	})
 
