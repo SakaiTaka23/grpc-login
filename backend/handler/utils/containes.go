@@ -1,4 +1,4 @@
-package auth
+package utils
 
 func Contains(s []string, e string) bool {
 	for _, a := range s {

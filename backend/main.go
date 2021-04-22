@@ -4,8 +4,8 @@ import (
 	"log"
 	"net"
 
-	"backend/config"
-	"backend/database"
+	"backend/infrastructure/datastore/mysql"
+	"backend/infrastructure/server"
 )
 
 const (
@@ -13,14 +13,15 @@ const (
 )
 
 func main() {
-	database.Connect()
+	mysql.Connect()
 
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
-	s := config.CreateServer()
+	s := server.Create()
+	s = server.SetRouter(s)
 
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %c", err)
