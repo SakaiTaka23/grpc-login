@@ -24,12 +24,12 @@ func Connect() *MySQLHandler {
 		panic("could not connect to the database")
 	}
 
-	mySqlHandler := new(MySQLHandler)
-	mySqlHandler.Conn = connection
+	MySQLHandler := new(MySQLHandler)
+	MySQLHandler.Conn = connection
 
 	if err := connection.AutoMigrate(&model.User{}); err != nil {
 		panic(err)
 	}
 
-	return mySqlHandler
+	return MySQLHandler
 }
