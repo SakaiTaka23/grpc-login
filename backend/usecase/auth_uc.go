@@ -3,6 +3,7 @@ package usecase
 import (
 	"backend/entity/model"
 	"backend/entity/repository"
+	"os"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
@@ -20,8 +21,6 @@ type AuthUsecase interface {
 type authUsecase struct {
 	userRepo repository.UserRepository
 }
-
-const SecretKey = "secret"
 
 func NewAuthUsecase(userRepo repository.UserRepository) AuthUsecase {
 	authUsecase := authUsecase{userRepo: userRepo}
@@ -48,7 +47,7 @@ func (usecase *authUsecase) Login(user *model.User) (string, error) {
 		ExpiresAt: time.Now().Add(time.Hour * 24).Unix(),
 	})
 
-	token, _ := claims.SignedString([]byte(SecretKey))
+	token, _ := claims.SignedString([]byte(os.Getenv("SECRET_TOKEN")))
 
 	return token, nil
 }
