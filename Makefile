@@ -26,7 +26,7 @@ DOC_CMD = $(RUN_RM) \
 
 up:
 	$(UP)
-back: db
+back:
 	$(UP) back
 front:
 	$(UP) front
