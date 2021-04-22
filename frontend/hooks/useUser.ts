@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { LoginRequest } from '../proto/auth_pb';
 import { UserServiceClient } from '../proto/UserServiceClientPb';
 import { userInfo } from '../types/userType';
 import { Empty } from 'google-protobuf/google/protobuf/empty_pb';
