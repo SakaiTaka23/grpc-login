@@ -8,11 +8,11 @@ import (
 	"gorm.io/gorm"
 )
 
-type MySqlHandler struct {
+type MySQLHandler struct {
 	Conn *gorm.DB
 }
 
-func Connect() *MySqlHandler {
+func Connect() *MySQLHandler {
 	user := os.Getenv("DB_USERNAME")
 	pass := os.Getenv("DB_PASSWORD")
 	protocol := "tcp(db:3306)"
@@ -24,7 +24,7 @@ func Connect() *MySqlHandler {
 		panic("could not connect to the database")
 	}
 
-	mySqlHandler := new(MySqlHandler)
+	mySqlHandler := new(MySQLHandler)
 	mySqlHandler.Conn = connection
 
 	if err := connection.AutoMigrate(&model.User{}); err != nil {

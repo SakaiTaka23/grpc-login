@@ -8,7 +8,7 @@ import (
 	"backend/usecase"
 )
 
-func InjectDB() mysql.MySqlHandler {
+func InjectDB() mysql.MySQLHandler {
 	sqlHandler := mysql.Connect()
 	return *sqlHandler
 }
