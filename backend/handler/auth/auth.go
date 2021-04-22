@@ -18,7 +18,7 @@ func Authenticate(ctx context.Context) (context.Context, error) {
 		return nil, status.Errorf(codes.Unauthenticated, "Token is not set")
 	}
 
-	token_parsed, err := jwt.ParseWithClaims(token, &jwt.StandardClaims{}, func(t *jwt.Token) (interface{}, error) {
+	tokenParsed, err := jwt.ParseWithClaims(token, &jwt.StandardClaims{}, func(t *jwt.Token) (interface{}, error) {
 		return []byte(SecretKey), nil
 	})
 
@@ -27,7 +27,7 @@ func Authenticate(ctx context.Context) (context.Context, error) {
 		return nil, status.Errorf(codes.Unauthenticated, "Token is not valid")
 	}
 
-	claims := token_parsed.Claims.(*jwt.StandardClaims)
+	claims := tokenParsed.Claims.(*jwt.StandardClaims)
 
 	ctx = context.WithValue(ctx, "user_id", claims.Issuer)
 
