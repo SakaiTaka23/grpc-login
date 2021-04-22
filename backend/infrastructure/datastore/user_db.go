@@ -25,7 +25,7 @@ func (userRepo *UserRepository) DeleteUser(id string) {
 	userRepo.MySQLHandler.Conn.Where("id = ?", id).Delete(&user)
 }
 
-func (userRepo *UserRepository) FindUserFromId(id string) *model.User {
+func (userRepo *UserRepository) FindUserFromID(id string) *model.User {
 	var user model.User
 	userRepo.MySQLHandler.Conn.Where("id = ?", id).First(&user)
 	return &user

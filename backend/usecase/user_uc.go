@@ -19,6 +19,6 @@ func NewUserUsecase(userRepo repository.UserRepository) UserUsecase {
 }
 
 func (usecase *userUsecase) User(id string) *model.User {
-	user := usecase.userRepo.FindUserFromId(id)
+	user := usecase.userRepo.FindUserFromID(id)
 	return user
 }
