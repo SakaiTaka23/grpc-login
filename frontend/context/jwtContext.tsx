@@ -8,7 +8,7 @@ type JWTContextState = {
 
 const JWTContext = createContext({} as JWTContextState);
 
-const JWTContextProvider: FC = ({ children }) => {
+const JWTProvider: FC = ({ children }) => {
   const [jwt, setJWT] = useState('');
 
   useEffect(() => {
@@ -27,4 +27,4 @@ const JWTContextProvider: FC = ({ children }) => {
   return <JWTContext.Provider value={{ jwt, setJWT, deleteJWT }}>{children}</JWTContext.Provider>;
 };
 
-export { JWTContext, JWTContextProvider };
+export { JWTContext, JWTProvider };
