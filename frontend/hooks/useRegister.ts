@@ -1,24 +1,34 @@
-import { AuthServiceClient } from '../proto/AuthServiceClientPb';
+import { Error } from 'grpc-web';
+import { useState } from 'react';
+import NewAuthServiceClient from '../api/client/AuthServiceClient';
 import { RegisterRequest } from '../proto/auth_pb';
 import { registerForm } from '../types/FormType';
 
 const useRegister = () => {
+  const [err, setErr] = useState<Error>();
+
   const onSubmit = (data: registerForm) => {
     console.log(data);
     sendInfo(data);
   };
 
-  const sendInfo = async ({ email, name, password }: registerForm) => {
-    const client = new AuthServiceClient('http://localhost:8080');
+  const sendInfo = ({ email, name, password }: registerForm) => {
     const request = new RegisterRequest();
     request.setEmail(email);
     request.setName(name);
     request.setPassword(password);
-    const response = await client.register(request, {});
-    console.log(response);
+
+    NewAuthServiceClient().register(request, {}, (err, res) => {
+      if (err) {
+        setErr(err);
+      } else {
+        console.log(res.getUid());
+        setErr(null);
+      }
+    });
   };
 
-  return { onSubmit };
+  return { err, onSubmit };
 };
 
 export default useRegister;

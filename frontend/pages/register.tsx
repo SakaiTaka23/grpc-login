@@ -6,7 +6,9 @@ import { registerForm } from '../types/FormType';
 
 const Register = () => {
   const { register, handleSubmit } = useForm<registerForm>();
-  const { onSubmit } = useRegister();
+  const { err, onSubmit } = useRegister();
+
+  console.log(err);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
