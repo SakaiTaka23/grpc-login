@@ -10,7 +10,7 @@ const Login = () => {
 
   return (
     <>
-      {err ? <h1>メールもしくはパスワードが違います。</h1> : ''}
+      {err ? <h1>{err.message}</h1> : ''}
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextField
           variant='outlined'
