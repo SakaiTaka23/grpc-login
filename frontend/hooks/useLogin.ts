@@ -11,10 +11,10 @@ const useLogin = () => {
 
   const onSubmit = (data: loginForm) => {
     console.log(data);
-    fetchToken(data);
+    LoginApi(data);
   };
 
-  const fetchToken = async ({ email, password }: loginForm) => {
+  const LoginApi = async ({ email, password }: loginForm) => {
     const client = NewAuthServiceClient();
     const request = new LoginRequest();
     request.setEmail(email);
