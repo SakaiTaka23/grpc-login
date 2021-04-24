@@ -2,10 +2,10 @@ import { Button, TextField } from '@material-ui/core';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import useRegister from '../hooks/useRegister';
-import { register } from '../types/registerType';
+import { registerForm } from '../types/FormType';
 
 const Register = () => {
-  const { register, handleSubmit } = useForm<register>();
+  const { register, handleSubmit } = useForm<registerForm>();
   const { onSubmit } = useRegister();
 
   return (

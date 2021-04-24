@@ -3,4 +3,10 @@ type loginForm = {
   password: string;
 };
 
-export type { loginForm };
+type registerForm = {
+  email: string;
+  name: string;
+  password: string;
+};
+
+export type { loginForm, registerForm };

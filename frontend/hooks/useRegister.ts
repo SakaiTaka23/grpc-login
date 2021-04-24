@@ -1,14 +1,14 @@
 import { AuthServiceClient } from '../proto/AuthServiceClientPb';
 import { RegisterRequest } from '../proto/auth_pb';
-import { register } from '../types/registerType';
+import { registerForm } from '../types/FormType';
 
 const useRegister = () => {
-  const onSubmit = (data: register) => {
+  const onSubmit = (data: registerForm) => {
     console.log(data);
     sendInfo(data);
   };
 
-  const sendInfo = async ({ email, name, password }: register) => {
+  const sendInfo = async ({ email, name, password }: registerForm) => {
     const client = new AuthServiceClient('http://localhost:8080');
     const request = new RegisterRequest();
     request.setEmail(email);
