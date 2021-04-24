@@ -14,12 +14,11 @@ const useLogin = () => {
     LoginApi(data);
   };
 
-  const LoginApi = async ({ email, password }: loginForm) => {
-    const client = NewAuthServiceClient();
+  const LoginApi = ({ email, password }: loginForm) => {
     const request = new LoginRequest();
     request.setEmail(email);
     request.setPassword(password);
-    client
+    NewAuthServiceClient()
       .login(request, {}, (err) => {
         if (err) {
           setErr(err);
