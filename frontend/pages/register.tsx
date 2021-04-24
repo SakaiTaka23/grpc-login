@@ -11,39 +11,42 @@ const Register = () => {
   console.log(err);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <TextField
-        variant='outlined'
-        placeholder='email'
-        {...register('email', {
-          required: true,
-          pattern: /^[a-zA-Z0-9_+-]+(.[a-zA-Z0-9_+-]+)*@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/,
-        })}
-      />
+    <>
+      {err ? <h1>{err.message}</h1> : ''}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <TextField
+          variant='outlined'
+          placeholder='email'
+          {...register('email', {
+            required: true,
+            pattern: /^[a-zA-Z0-9_+-]+(.[a-zA-Z0-9_+-]+)*@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/,
+          })}
+        />
 
-      <TextField
-        variant='outlined'
-        placeholder='name'
-        {...register('name', {
-          required: true,
-          minLength: 1,
-          maxLength: 20,
-        })}
-      />
+        <TextField
+          variant='outlined'
+          placeholder='name'
+          {...register('name', {
+            required: true,
+            minLength: 1,
+            maxLength: 20,
+          })}
+        />
 
-      <TextField
-        variant='outlined'
-        placeholder='password'
-        {...register('password', {
-          required: true,
-          minLength: 8,
-          maxLength: 20,
-        })}
-      />
-      <Button type='submit' variant='outlined'>
-        submit
-      </Button>
-    </form>
+        <TextField
+          variant='outlined'
+          placeholder='password'
+          {...register('password', {
+            required: true,
+            minLength: 8,
+            maxLength: 20,
+          })}
+        />
+        <Button type='submit' variant='outlined'>
+          submit
+        </Button>
+      </form>
+    </>
   );
 };
 
