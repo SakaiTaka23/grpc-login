@@ -1,7 +1,7 @@
 import { UserServiceClient } from '../../proto/UserServiceClientPb';
 import { AuthInterceptor, host } from './authInterceptor';
 
-const NewUserServiceClient = (token: string) => {
+const NewUserServiceClient = (token = '') => {
   const authInterceptor = new AuthInterceptor(token);
   const options = {
     unaryInterceptors: [authInterceptor],

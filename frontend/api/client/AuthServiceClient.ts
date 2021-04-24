@@ -1,8 +1,8 @@
 import { AuthServiceClient } from '../../proto/AuthServiceClientPb';
 import { AuthInterceptor, host } from './authInterceptor';
 
-const NewAuthServiceClient = () => {
-  const authInterceptor = new AuthInterceptor('');
+const NewAuthServiceClient = (token = '') => {
+  const authInterceptor = new AuthInterceptor(token);
   const options = {
     unaryInterceptors: [authInterceptor],
     streamInterceptors: [authInterceptor],
