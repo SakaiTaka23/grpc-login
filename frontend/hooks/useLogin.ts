@@ -1,29 +1,39 @@
-import { AuthServiceClient } from '../proto/AuthServiceClientPb';
+import { Error } from 'grpc-web';
+import { useContext, useState } from 'react';
+import NewAuthServiceClient from '../api/client/AuthServiceClient';
+import { JWTContext } from '../context/jwtContext';
 import { LoginRequest } from '../proto/auth_pb';
-import { login } from '../types/loginType';
+import { loginForm } from '../types/FormType';
 
 const useLogin = () => {
-  const onSubmit = (data: login) => {
+  const [err, setErr] = useState<Error>();
+  const { setJWT } = useContext(JWTContext);
+
+  const onSubmit = (data: loginForm) => {
     console.log(data);
     fetchToken(data);
   };
 
-  const fetchToken = async ({ email, password }: login) => {
-    const client = new AuthServiceClient('http://localhost:8080');
+  const fetchToken = async ({ email, password }: loginForm) => {
+    const client = NewAuthServiceClient();
     const request = new LoginRequest();
     request.setEmail(email);
     request.setPassword(password);
-    const response = client.login(request, {}, (err, res) => {
-      console.log(err);
-    });
-    response.on('metadata', (metadata) => {
-      console.log(JSON.stringify(metadata));
-      const jwt = metadata.jwt;
-      localStorage.setItem('jwt', jwt);
-    });
+    client
+      .login(request, {}, (err) => {
+        if (err) {
+          setErr(err);
+        } else {
+          setErr(null);
+        }
+      })
+      .on('metadata', (metadata) => {
+        console.log(JSON.stringify(metadata));
+        setJWT(metadata.jwt);
+      });
   };
 
-  return { onSubmit };
+  return { err, onSubmit };
 };
 
 export default useLogin;
