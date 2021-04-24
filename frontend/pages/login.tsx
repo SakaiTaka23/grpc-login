@@ -1,12 +1,23 @@
 import { Button, TextField } from '@material-ui/core';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import useLogin from '../hooks/useLogin';
+import LoginApi from '../api/LoginApi';
+import { JWTContext } from '../context/jwtContext';
+import { LoginRequest } from '../proto/auth_pb';
 import { login } from '../types/loginType';
 
 const Login = () => {
+  const { setJWT } = useContext(JWTContext);
   const { register, handleSubmit } = useForm<login>();
-  const { onSubmit } = useLogin();
+
+  const onSubmit = (data: login) => {
+    console.log(data);
+    const request = new LoginRequest();
+    request.setEmail(data.email);
+    request.setPassword(data.password);
+    const err = LoginApi(request, setJWT);
+    console.log(err);
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
