@@ -1,5 +1,6 @@
 import { Button } from '@material-ui/core';
 import React from 'react';
+import OnClickButton from '../components/molecules/OnClickButton';
 import useDelete from '../hooks/useDelete';
 
 const Delete = () => {
@@ -8,9 +9,7 @@ const Delete = () => {
   return (
     <>
       <h1>Do You Really Want To Delete Account?</h1>
-      <Button variant='outlined' onClick={() => requestDelete()}>
-        Delete
-      </Button>
+      <OnClickButton buttonText='Delete' onClickEvent={requestDelete} />
     </>
   );
 };

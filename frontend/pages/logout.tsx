@@ -1,5 +1,6 @@
 import { Button } from '@material-ui/core';
 import React from 'react';
+import OnClickButton from '../components/molecules/OnClickButton';
 
 const Logout = () => {
   const deleteToken = () => {
@@ -9,9 +10,7 @@ const Logout = () => {
   return (
     <>
       <h1>Do You Really Want To Logout?</h1>
-      <Button variant='outlined' onClick={() => deleteToken()}>
-        Logout
-      </Button>
+      <OnClickButton buttonText='Logout' onClickEvent={deleteToken} />
     </>
   );
 };
