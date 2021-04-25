@@ -1,39 +1,28 @@
-import { Button, TextField } from '@material-ui/core';
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
+import SubmitButton from '../components/molecules/SubmitButton';
+import EmailInput from '../components/organisms/input/EmailInput';
+import PasswordInput from '../components/organisms/input/PasswordInput';
 import useLogin from '../hooks/useLogin';
 import { loginForm } from '../types/FormType';
 
 const Login = () => {
   const { err, onSubmit } = useLogin();
-  const { register, handleSubmit } = useForm<loginForm>();
+  const methods = useForm<loginForm>();
 
   return (
     <>
       {err ? <h1>{err.message}</h1> : ''}
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <TextField
-          variant='outlined'
-          placeholder='email'
-          {...register('email', {
-            required: true,
-            pattern: /^[a-zA-Z0-9_+-]+(.[a-zA-Z0-9_+-]+)*@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/,
-          })}
-        />
 
-        <TextField
-          variant='outlined'
-          placeholder='password'
-          {...register('password', {
-            required: true,
-            minLength: 8,
-            maxLength: 16,
-          })}
-        />
-        <Button type='submit' variant='outlined'>
-          submit
-        </Button>
-      </form>
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit(onSubmit)}>
+          <EmailInput />
+
+          <PasswordInput />
+
+          <SubmitButton />
+        </form>
+      </FormProvider>
     </>
   );
 };

@@ -1,11 +1,14 @@
-import { Button, TextField } from '@material-ui/core';
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
+import SubmitButton from '../components/molecules/SubmitButton';
+import EmailInput from '../components/organisms/input/EmailInput';
+import NameInput from '../components/organisms/input/NameInput';
+import PasswordInput from '../components/organisms/input/PasswordInput';
 import useRegister from '../hooks/useRegister';
 import { registerForm } from '../types/FormType';
 
 const Register = () => {
-  const { register, handleSubmit } = useForm<registerForm>();
+  const methods = useForm<registerForm>();
   const { err, onSubmit } = useRegister();
 
   console.log(err);
@@ -13,39 +16,16 @@ const Register = () => {
   return (
     <>
       {err ? <h1>{err.message}</h1> : ''}
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <TextField
-          variant='outlined'
-          placeholder='email'
-          {...register('email', {
-            required: true,
-            pattern: /^[a-zA-Z0-9_+-]+(.[a-zA-Z0-9_+-]+)*@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/,
-          })}
-        />
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit(onSubmit)}>
+          <EmailInput />
 
-        <TextField
-          variant='outlined'
-          placeholder='name'
-          {...register('name', {
-            required: true,
-            minLength: 1,
-            maxLength: 20,
-          })}
-        />
+          <NameInput />
 
-        <TextField
-          variant='outlined'
-          placeholder='password'
-          {...register('password', {
-            required: true,
-            minLength: 8,
-            maxLength: 20,
-          })}
-        />
-        <Button type='submit' variant='outlined'>
-          submit
-        </Button>
-      </form>
+          <PasswordInput />
+          <SubmitButton />
+        </form>
+      </FormProvider>
     </>
   );
 };
