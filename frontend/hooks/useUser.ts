@@ -12,8 +12,10 @@ const useUser = () => {
   });
 
   useEffect(() => {
-    fetchUser();
-  }, []);
+    if (jwt) {
+      fetchUser();
+    }
+  }, [jwt]);
 
   const fetchUser = () => {
     NewUserServiceClient(jwt).user(new Empty(), {}, (err, res) => {
