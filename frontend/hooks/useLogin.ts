@@ -1,6 +1,6 @@
 import { Error } from 'grpc-web';
 import { useContext, useState } from 'react';
-import NewAuthServiceClient from '../api/client/AuthServiceClient';
+import NewAuthServiceClient from '../api/AuthServiceClient';
 import { JWTContext } from '../context/jwtContext';
 import { LoginRequest } from '../proto/auth_pb';
 import { loginForm } from '../types/FormType';

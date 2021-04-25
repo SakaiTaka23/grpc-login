@@ -1,4 +1,4 @@
-import { UserServiceClient } from '../../proto/UserServiceClientPb';
+import { UserServiceClient } from '../proto/UserServiceClientPb';
 import { AuthInterceptor, host } from './authInterceptor';
 
 const NewUserServiceClient = (token = '') => {
