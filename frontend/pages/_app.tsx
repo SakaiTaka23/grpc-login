@@ -4,7 +4,7 @@ import '../styles/globals.css';
 const App = ({ Component, pageProps }) => {
   return (
     <JWTProvider>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </JWTProvider>
   );
 };

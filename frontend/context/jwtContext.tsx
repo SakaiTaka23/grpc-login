@@ -10,6 +10,7 @@ const JWTContext = createContext({} as JWTContextState);
 
 const JWTProvider: FC = ({ children }) => {
   const [jwt, setJWT] = useState('');
+  console.log(jwt);
 
   useEffect(() => {
     const token = localStorage.getItem('jwt');

@@ -1,22 +1,24 @@
-import { useEffect, useState } from 'react';
-import { UserServiceClient } from '../proto/UserServiceClientPb';
+import { useContext, useEffect, useState } from 'react';
 import { userInfo } from '../types/userType';
 import { Empty } from 'google-protobuf/google/protobuf/empty_pb';
+import NewUserServiceClient from '../api/UserServiceClient';
+import { JWTContext } from '../context/jwtContext';
 
 const useUser = () => {
+  const { jwt } = useContext(JWTContext);
   const [user, setUser] = useState<userInfo>({
     email: 'none',
     name: 'none',
   });
 
   useEffect(() => {
-    const token = localStorage.getItem('jwt');
-    fetchUser(token);
-  }, []);
+    if (jwt) {
+      fetchUser();
+    }
+  }, [jwt]);
 
-  const fetchUser = (token: string) => {
-    const client = new UserServiceClient('http://localhost:8080');
-    client.user(new Empty(), { authorization: `bearer ${token}` }, (err, res) => {
+  const fetchUser = () => {
+    NewUserServiceClient(jwt).user(new Empty(), {}, (err, res) => {
       console.log(err, res);
       if (err === null) {
         const info = res.toObject();

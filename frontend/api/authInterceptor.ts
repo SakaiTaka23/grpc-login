@@ -7,7 +7,7 @@ class AuthInterceptor {
 
   intercept(request: any, invoker: any) {
     const metadata = request.getMetadata();
-    metadata.Authorization = `Bearer + ${this.token}`;
+    metadata.Authorization = `Bearer ${this.token}`;
     return invoker(request);
   }
 }

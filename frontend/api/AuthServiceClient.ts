@@ -1,15 +1,15 @@
-import { UserServiceClient } from '../proto/UserServiceClientPb';
+import { AuthServiceClient } from '../proto/AuthServiceClientPb';
 import { AuthInterceptor, host } from './authInterceptor';
 
-const NewUserServiceClient = (token: string) => {
+const NewAuthServiceClient = (token = '') => {
   const authInterceptor = new AuthInterceptor(token);
   const options = {
     unaryInterceptors: [authInterceptor],
     streamInterceptors: [authInterceptor],
   };
-  const service = new UserServiceClient(host, null, options);
+  const service = new AuthServiceClient(host, null, options);
 
   return service;
 };
 
-export default NewUserServiceClient;
+export default NewAuthServiceClient;

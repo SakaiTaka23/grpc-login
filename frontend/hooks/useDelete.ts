@@ -1,13 +1,17 @@
-import { AuthServiceClient } from '../proto/AuthServiceClientPb';
 import { Empty } from 'google-protobuf/google/protobuf/empty_pb';
+import { useContext } from 'react';
+import NewAuthServiceClient from '../api/AuthServiceClient';
+import { JWTContext } from '../context/jwtContext';
 
 const useDelete = () => {
-  const requestDelete = (token: string) => {
-    const client = new AuthServiceClient('http://localhost:8080');
-    client.delete(new Empty(), { authorization: `bearer ${token}` }, (err, res) => {
-      console.log(err);
-      if (err === null) {
-        localStorage.removeItem('jwt');
+  const { jwt, setJWT } = useContext(JWTContext);
+
+  const requestDelete = () => {
+    NewAuthServiceClient(jwt).delete(new Empty(), {}, (err, res) => {
+      if (!err) {
+        setJWT('');
+      } else {
+        console.log(err.message);
       }
     });
   };
