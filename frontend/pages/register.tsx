@@ -1,3 +1,5 @@
+import { Avatar, Container, Grid, Typography } from '@material-ui/core';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import SubmitButton from '../components/molecules/SubmitButton';
@@ -16,14 +18,20 @@ const Register = () => {
   return (
     <>
       {err ? <h1>{err.message}</h1> : ''}
+      <Grid container direction='column' alignItems='center'>
+        <Avatar>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography variant='h5'>Sign in</Typography>
+      </Grid>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
-          <EmailInput />
-
-          <NameInput />
-
-          <PasswordInput />
-          <SubmitButton />
+          <Grid container direction='column' alignItems='center'>
+            <EmailInput />
+            <NameInput />
+            <PasswordInput />
+            <SubmitButton />
+          </Grid>
         </form>
       </FormProvider>
     </>
