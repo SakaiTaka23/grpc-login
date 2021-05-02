@@ -1,4 +1,4 @@
-import { createMuiTheme, ThemeProvider, useMediaQuery } from '@material-ui/core';
+import { createMuiTheme, CssBaseline, ThemeProvider, useMediaQuery } from '@material-ui/core';
 import { useEffect, useMemo } from 'react';
 import NavBar from '../components/organisms/pages/NavBar';
 import { JWTProvider } from '../context/jwtContext';
@@ -28,6 +28,7 @@ const App = ({ Component, pageProps }) => {
   return (
     <ThemeProvider theme={theme}>
       <JWTProvider>
+        <CssBaseline />
         <NavBar />
         <Component {...pageProps} />
       </JWTProvider>
