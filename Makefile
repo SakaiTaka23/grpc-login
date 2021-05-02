@@ -1,4 +1,4 @@
-COMPOSE = docker-compose
+COMPOSE = docker compose
 UP = $(COMPOSE) up
 RUN = docker run
 RUN_RM = $(RUN) --rm
