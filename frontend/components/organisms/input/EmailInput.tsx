@@ -8,7 +8,9 @@ const EmailInput = () => {
   return (
     <TextField
       variant='outlined'
+      margin='normal'
       placeholder='email'
+      fullWidth
       {...register('email', {
         required: true,
         pattern: /^[a-zA-Z0-9_+-]+(.[a-zA-Z0-9_+-]+)*@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/,

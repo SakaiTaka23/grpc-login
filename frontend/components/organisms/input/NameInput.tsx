@@ -8,7 +8,9 @@ const NameInput = () => {
   return (
     <TextField
       variant='outlined'
+      margin='normal'
       placeholder='name'
+      fullWidth
       {...register('name', {
         required: true,
         minLength: 1,
