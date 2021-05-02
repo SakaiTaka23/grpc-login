@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "google-protobuf": "^3.15.8",
     "grpc-web": "^1.2.1",
     "next": "10.1.3",

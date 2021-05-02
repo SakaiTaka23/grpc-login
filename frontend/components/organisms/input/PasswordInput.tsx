@@ -8,7 +8,9 @@ const PasswordInput = () => {
   return (
     <TextField
       variant='outlined'
-      placeholder='password'
+      margin='normal'
+      placeholder='Password *'
+      fullWidth
       {...register('password', {
         required: true,
         minLength: 8,
