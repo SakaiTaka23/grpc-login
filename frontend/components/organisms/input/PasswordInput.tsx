@@ -9,7 +9,7 @@ const PasswordInput = () => {
     <TextField
       variant='outlined'
       margin='normal'
-      placeholder='password'
+      placeholder='Password *'
       fullWidth
       {...register('password', {
         required: true,

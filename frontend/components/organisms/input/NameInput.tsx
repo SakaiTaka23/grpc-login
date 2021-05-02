@@ -9,7 +9,7 @@ const NameInput = () => {
     <TextField
       variant='outlined'
       margin='normal'
-      placeholder='name'
+      placeholder='Name *'
       fullWidth
       {...register('name', {
         required: true,

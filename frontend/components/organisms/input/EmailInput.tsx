@@ -9,7 +9,7 @@ const EmailInput = () => {
     <TextField
       variant='outlined'
       margin='normal'
-      placeholder='email'
+      placeholder='Email Address *'
       fullWidth
       {...register('email', {
         required: true,
