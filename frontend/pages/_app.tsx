@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import NavBar from '../components/molecules/NavBar';
+import NavBar from '../components/organisms/pages/NavBar';
 import { JWTProvider } from '../context/jwtContext';
 import '../styles/globals.css';
 
