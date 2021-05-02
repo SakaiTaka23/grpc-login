@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import NavBar from '../components/molecules/NavBar';
 import { JWTProvider } from '../context/jwtContext';
 import '../styles/globals.css';
 
@@ -13,6 +14,7 @@ const App = ({ Component, pageProps }) => {
 
   return (
     <JWTProvider>
+      <NavBar />
       <Component {...pageProps} />
     </JWTProvider>
   );
