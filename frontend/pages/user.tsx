@@ -3,7 +3,6 @@ import useUser from '../hooks/useUser';
 
 const User = () => {
   const { user } = useUser();
-  console.log(user);
 
   return (
     <>
