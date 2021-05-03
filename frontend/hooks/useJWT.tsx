@@ -4,6 +4,7 @@ type JWTContextState = {
   jwt: string;
   setJWT: Dispatch<SetStateAction<string>>;
   isLoggedIn: boolean;
+  isChecking: boolean | undefined;
   deleteJWT: () => void;
 };
 
@@ -11,8 +12,8 @@ const JWTContext = createContext({} as JWTContextState);
 
 const JWTProvider: FC = ({ children }) => {
   const [jwt, setJWT] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  console.log(isLoggedIn);
+  const [isChecking, setIsChecking] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState<undefined | boolean>(undefined);
 
   useEffect(() => {
     const token = localStorage.getItem('jwt');
@@ -20,6 +21,7 @@ const JWTProvider: FC = ({ children }) => {
       setJWT(token);
       setIsLoggedIn(true);
     }
+    setIsChecking(false);
   }, []);
 
   useEffect(() => {
@@ -32,7 +34,9 @@ const JWTProvider: FC = ({ children }) => {
     setIsLoggedIn(false);
   };
 
-  return <JWTContext.Provider value={{ jwt, setJWT, isLoggedIn, deleteJWT }}>{children}</JWTContext.Provider>;
+  return (
+    <JWTContext.Provider value={{ jwt, setJWT, isChecking, isLoggedIn, deleteJWT }}>{children}</JWTContext.Provider>
+  );
 };
 
 const useJWT = () => useContext(JWTContext);
