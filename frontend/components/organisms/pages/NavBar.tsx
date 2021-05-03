@@ -2,13 +2,10 @@ import { AppBar, createStyles, makeStyles, Toolbar, Typography } from '@material
 import React from 'react';
 import Link from 'next/link';
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       flexGrow: 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
     },
     title: {
       flexGrow: 1,
@@ -25,7 +22,7 @@ const NavBar = () => {
           <Typography variant='h6' className={classes.title}>
             gRPC-Login
           </Typography>
-          <Link href='#'>
+          <Link href='/login'>
             <a>Login</a>
           </Link>
         </Toolbar>
