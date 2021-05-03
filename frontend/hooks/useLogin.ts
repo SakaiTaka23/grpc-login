@@ -1,4 +1,5 @@
 import { Error } from 'grpc-web';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import NewAuthServiceClient from '../api/AuthServiceClient';
 import { LoginRequest } from '../proto/auth_pb';
@@ -6,6 +7,7 @@ import { loginForm } from '../types/FormType';
 import { useJWT } from './useJWT';
 
 const useLogin = () => {
+  const router = useRouter();
   const [err, setErr] = useState<Error>();
   const { setJWT } = useJWT();
 
@@ -24,6 +26,7 @@ const useLogin = () => {
           setErr(err);
         } else {
           setErr(null);
+          router.push('/user');
         }
       })
       .on('metadata', (metadata) => {
