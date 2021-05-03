@@ -1,6 +1,7 @@
 import { AppBar, createStyles, makeStyles, Toolbar, Typography } from '@material-ui/core';
 import React from 'react';
 import Link from 'next/link';
+import { useJWT } from '../../../hooks/useJWT';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -15,6 +16,8 @@ const useStyles = makeStyles(() =>
 
 const NavBar = () => {
   const classes = useStyles();
+  const { isLoggedIn } = useJWT();
+
   return (
     <div className={classes.root}>
       <AppBar position='static'>
@@ -22,9 +25,20 @@ const NavBar = () => {
           <Typography variant='h6' className={classes.title}>
             gRPC-Login
           </Typography>
-          <Link href='/login'>
-            <a>Login</a>
-          </Link>
+          {isLoggedIn ? (
+            <Link href='/user'>
+              <a>User</a>
+            </Link>
+          ) : (
+            <>
+              <Link href='/login'>
+                <a>Login</a>
+              </Link>
+              <Link href='/register'>
+                <a>Register</a>
+              </Link>
+            </>
+          )}
         </Toolbar>
       </AppBar>
     </div>
