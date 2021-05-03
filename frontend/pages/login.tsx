@@ -1,6 +1,7 @@
-import { Avatar, Container, Grid, Link, makeStyles, Typography } from '@material-ui/core';
+import { Avatar, Button, Container, Grid, makeStyles, Typography } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import React from 'react';
+import Link from 'next/link';
 import { FormProvider, useForm } from 'react-hook-form';
 import SubmitButton from '../components/molecules/SubmitButton';
 import EmailInput from '../components/organisms/input/EmailInput';
@@ -49,15 +50,10 @@ const Login = () => {
             <EmailInput />
             <PasswordInput />
             <SubmitButton />
-            <Grid container>
-              <Grid item xs>
-                <Link href='#' variant='body2'>
-                  Forgot password?
-                </Link>
-              </Grid>
+            <Grid container justify='flex-end'>
               <Grid item>
-                <Link href='#' variant='body2'>
-                  {"Don't have an account? Sign Up"}
+                <Link href='/register' passHref>
+                  <Button component='a'>Don't have an account? Sign Up</Button>
                 </Link>
               </Grid>
             </Grid>
