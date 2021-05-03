@@ -1,6 +1,6 @@
 import { createMuiTheme, CssBaseline, ThemeProvider, useMediaQuery } from '@material-ui/core';
 import { useEffect, useMemo } from 'react';
-import NavBar from '../components/organisms/pages/NavBar';
+import NavBar from '../components/organisms/navbar/NavBar';
 import { JWTProvider } from '../context/jwtContext';
 import '../styles/globals.css';
 
