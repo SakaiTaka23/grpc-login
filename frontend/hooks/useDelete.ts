@@ -1,10 +1,9 @@
 import { Empty } from 'google-protobuf/google/protobuf/empty_pb';
-import { useContext } from 'react';
 import NewAuthServiceClient from '../api/AuthServiceClient';
-import { JWTContext } from '../context/jwtContext';
+import { useJWT } from './useJWT';
 
 const useDelete = () => {
-  const { jwt, setJWT } = useContext(JWTContext);
+  const { jwt, setJWT } = useJWT();
 
   const requestDelete = () => {
     NewAuthServiceClient(jwt).delete(new Empty(), {}, (err, res) => {

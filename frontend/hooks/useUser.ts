@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { userInfo } from '../types/userType';
 import { Empty } from 'google-protobuf/google/protobuf/empty_pb';
 import NewUserServiceClient from '../api/UserServiceClient';
-import { JWTContext } from '../context/jwtContext';
+import { useJWT } from './useJWT';
 
 const useUser = () => {
-  const { jwt } = useContext(JWTContext);
+  const { jwt } = useJWT();
   const [user, setUser] = useState<userInfo>({
     email: 'none',
     name: 'none',

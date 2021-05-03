@@ -1,4 +1,4 @@
-import { createContext, Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
+import { createContext, Dispatch, FC, SetStateAction, useContext, useEffect, useState } from 'react';
 
 type JWTContextState = {
   jwt: string;
@@ -28,4 +28,6 @@ const JWTProvider: FC = ({ children }) => {
   return <JWTContext.Provider value={{ jwt, setJWT, deleteJWT }}>{children}</JWTContext.Provider>;
 };
 
-export { JWTContext, JWTProvider };
+const useJWT = () => useContext(JWTContext);
+
+export { JWTProvider, useJWT };
