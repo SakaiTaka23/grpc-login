@@ -7,8 +7,9 @@ const useRequiredLogin = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (isChecking === false && !isLoggedIn) router.push('/login');
-  }, []);
+    if (isChecking) return;
+    if (!isLoggedIn) router.push('/login');
+  }, [isChecking, isLoggedIn]);
 };
 
 export default useRequiredLogin;
