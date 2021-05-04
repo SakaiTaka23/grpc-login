@@ -4,8 +4,10 @@ import { useState } from 'react';
 import NewAuthServiceClient from '../api/AuthServiceClient';
 import { RegisterRequest } from '../proto/auth_pb';
 import { registerForm } from '../types/FormType';
+import useNotLogin from './useRequiredLogin';
 
 const useRegister = () => {
+  useNotLogin();
   const [err, setErr] = useState<Error>();
   const router = useRouter();
 
