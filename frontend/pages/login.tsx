@@ -8,6 +8,7 @@ import EmailInput from '../components/organisms/input/EmailInput';
 import PasswordInput from '../components/organisms/input/PasswordInput';
 import useLogin from '../hooks/useLogin';
 import { loginForm } from '../types/FormType';
+import useNotLogin from '../hooks/useRequiredLogin';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -30,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Login = () => {
+  useNotLogin();
   const classes = useStyles();
   const methods = useForm<loginForm>();
   const { err, onSubmit } = useLogin();
