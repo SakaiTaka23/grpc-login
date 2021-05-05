@@ -8,7 +8,6 @@ const useRequiredLogin = () => {
 
   useEffect(() => {
     if (isChecking) return;
-    console.log(isLoggedIn);
     if (!isLoggedIn) router.push('/login');
   }, [isChecking, isLoggedIn]);
 };
