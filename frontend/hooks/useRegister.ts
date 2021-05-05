@@ -4,7 +4,7 @@ import { useState } from 'react';
 import NewAuthServiceClient from '../api/AuthServiceClient';
 import { RegisterRequest } from '../proto/auth_pb';
 import { registerForm } from '../types/FormType';
-import useNotLogin from './useRequiredLogin';
+import useNotLogin from './useNotLogin';
 
 const useRegister = () => {
   useNotLogin();
