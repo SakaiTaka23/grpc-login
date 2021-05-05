@@ -16,19 +16,24 @@ const JWTProvider: FC = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<undefined | boolean>(undefined);
 
   useEffect(() => {
-    const token = localStorage.getItem('jwt');
-    if (token) {
-      setJWT(token);
+    if (jwt) {
       setIsLoggedIn(true);
+      localStorage.setItem('jwt', jwt);
     } else {
       setIsLoggedIn(false);
     }
     setIsChecking(false);
   }, [jwt]);
 
+  useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      setJWT(token);
+    }
+  }, []);
+
   const deleteJWT = () => {
     setJWT('');
-    setIsLoggedIn(false);
   };
 
   return (
