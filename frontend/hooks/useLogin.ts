@@ -5,7 +5,7 @@ import NewAuthServiceClient from '../api/AuthServiceClient';
 import { LoginRequest } from '../proto/auth_pb';
 import { loginForm } from '../types/FormType';
 import { useJWT } from './useJWT';
-import useNotLogin from './useRequiredLogin';
+import useNotLogin from './useNotLogin';
 
 const useLogin = () => {
   useNotLogin();
