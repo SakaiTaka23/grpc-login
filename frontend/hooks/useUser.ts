@@ -21,7 +21,6 @@ const useUser = () => {
 
   const fetchUser = () => {
     NewUserServiceClient(jwt).user(new Empty(), {}, (err, res) => {
-      console.log(err, res);
       if (err === null) {
         const info = res.toObject();
         setUser(info);

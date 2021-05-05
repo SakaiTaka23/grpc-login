@@ -11,23 +11,21 @@ type JWTContextState = {
 const JWTContext = createContext({} as JWTContextState);
 
 const JWTProvider: FC = ({ children }) => {
-  const [jwt, setJWT] = useState('');
+  const [jwt, setJWT] = useState<undefined | string>(undefined);
   const [isChecking, setIsChecking] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState<undefined | boolean>(undefined);
 
   useEffect(() => {
     const token = localStorage.getItem('jwt');
-    if (token) {
-      setJWT(token);
-    }
+    setJWT(token);
   }, []);
 
   useEffect(() => {
+    if (jwt === undefined) return;
     if (jwt) {
       setIsLoggedIn(true);
       localStorage.setItem('jwt', jwt);
     } else {
-      console.log(jwt);
       setIsLoggedIn(false);
     }
     setIsChecking(false);
