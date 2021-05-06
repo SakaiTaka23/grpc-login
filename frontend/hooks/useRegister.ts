@@ -1,11 +1,15 @@
 import { Error } from 'grpc-web';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import NewAuthServiceClient from '../api/AuthServiceClient';
 import { RegisterRequest } from '../proto/auth_pb';
 import { registerForm } from '../types/FormType';
+import useNotLogin from './useNotLogin';
 
 const useRegister = () => {
+  useNotLogin();
   const [err, setErr] = useState<Error>();
+  const router = useRouter();
 
   const onSubmit = (data: registerForm) => {
     console.log(data);
@@ -24,6 +28,7 @@ const useRegister = () => {
       } else {
         console.log(res.getUid());
         setErr(null);
+        router.push('/login');
       }
     });
   };
